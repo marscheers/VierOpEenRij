@@ -31,20 +31,20 @@
       function steenaanklikken(vakId){
           var rij = "" + vakId;
           rij = rij.charAt(0);
-          var Iddoel = "vakje" + rij + checkOpWelkeHoogte(vakId);
+          var Iddoel = "vakje" + rij + checkOpWelkeHoogte(rij);
           var teVerkleurenCirkel = document.getElementById(Iddoel);
           teVerkleurenCirkel.style.backgroundColor = 'red';
       }
-      function checkOpWelkeHoogte(rij){
-          var vakId = "" + rij;
-          vakId = vakId.charAt(0);
-            alert(vakId);
-          var kleur = document.getElementById(vakId).style.backgroundColor;
+      function checkOpWelkeHoogte(tiental){
+          var kleur = document.getElementById("vakje" + tiental + "0").style.backgroundColor;
           if(kleur == 'red'){
-              alert("dit gaat niet");
+              kleur = tiental + "1";
+              alert(kleur);
+              return  + "1";
           }
           return 0;
       }
+
 
 
 
