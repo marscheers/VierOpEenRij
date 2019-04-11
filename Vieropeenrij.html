@@ -80,6 +80,12 @@
                     localStorage.setItem("SpelerNaam2", invoerSpeler2);
                     //alert("Naam opgeslagen");
             }
+            function winnaarSpelerEen(){
+            document.getElementById("deWinnaar").innerHTML = "Gefeliciteerd " + localStorage.getItem("SpelerNaam") + "!";
+        }
+        function winnaarSpelerTwee(){
+            document.getElementById("deWinnaar").innerHTML = "Gefeliciteerd " + localStorage.getItem("SpelerNaam2") + "!";
+        }
   </script>
 </head>
 <body>
@@ -143,6 +149,10 @@
             <td><div class="circle" onclick = steenaanklikken(70) id=vakje70></div></td>
         </tr>
     </table>
+    <br>
+    <h3 id="deWinnaar">Wie heeft er gewonnen?</h3>
+    <button type="button" onclick="winnaarSpelerEen()">Speler1</button>
+    <button type="button" onclick="winnaarSpelerTwee()">Speler2</button>
     <br>
     <br>
     <button type="reset" onclick="RestartGame()">Herstart het spel</button> <!--restart knop-->
