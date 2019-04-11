@@ -23,6 +23,10 @@
       }
   </style>
   <script>
+      window.onload = function(){
+        document.getElementById("uitkomstSpeler1").innerHTML = localStorage.getItem("SpelerNaam") + " (Rood)";
+        document.getElementById("uitkomstSpeler2").innerHTML = localStorage.getItem("SpelerNaam2") + " (Geel)";
+      }
       function steenaanklikken(vakId){
           var rij = "" + vakId;
           rij = rij.charAt(0);
@@ -55,19 +59,34 @@
         }
         function spelerAanZet(){
             document.getElementById("commentaar").style.backgroundColor = 'red';
-            document.getElementById("commentaar").innerHTML = "Speler 1"
+            document.getElementById("commentaar").innerHTML = localStorage.getItem("SpelerNaam");
             if(clicks % 2 == 0){
                 document.getElementById("commentaar").style.backgroundColor = "yellow";
-                document.getElementById("commentaar").innerHTML = "Speler 2"
+                document.getElementById("commentaar").innerHTML = localStorage.getItem("SpelerNaam2");
             }
         }
         function RestartGame(){   //voorbeeld van refresh website
 				window.location = window.location;
-			}
+            }
+            function naamOpslaanSpeler1(jojo){
+                    var invoerSpeler1 = document.getElementById("input").value;
+                    document.getElementById("uitkomstSpeler1").innerHTML = invoerSpeler1 + " (Rood)";
+                    localStorage.setItem("SpelerNaam", invoerSpeler1);
+                    //alert("Naam opgeslagen");
+            }
+            function naamOpslaanSpeler2(blabla){
+                    var invoerSpeler2 = document.getElementById("input").value;
+                    document.getElementById("uitkomstSpeler2").innerHTML = invoerSpeler2 + " (Geel)";
+                    localStorage.setItem("SpelerNaam2", invoerSpeler2);
+                    //alert("Naam opgeslagen");
+            }
   </script>
 </head>
 <body>
-<h1>Vier-op-een-rij</h1>
+<h1>Vier op een rij</h1>
+<div id="hallo"><p>Clicks: <a id="aantalKlikken">0</a></p></div>
+<div id="commentaar">Beurt</div>
+<br>
     <table id="vieropeenrij">
         <tr>
             <td><div class="circle" onclick = steenaanklikken(15) id=vakje15></div></td>
@@ -124,9 +143,17 @@
             <td><div class="circle" onclick = steenaanklikken(70) id=vakje70></div></td>
         </tr>
     </table>
-    <div id="hallo"><p>Clicks: <a id="aantalKlikken">0</a></p></div>
-    <div id="commentaar">Beurt</div>
+    <br>
+    <br>
     <button type="reset" onclick="RestartGame()">Herstart het spel</button> <!--restart knop-->
+    <br>
+    <br>
+    <div id=uitkomstSpeler1> Speler 1</div> 
+    <div id=uitkomstSpeler2> Speler 2 </div> <br>
+    <textarea id= "input" type="text"> </textarea> <br>
+    
+        <button onclick=naamOpslaanSpeler1("speler1")> Sla speler 1 op </button>
+        <button onclick=naamOpslaanSpeler2("speler2")> Sla speler 2 op </button> <br>
     <p><details>
         <summary>Copyright 2019.</summary>
         <p>This game is created by YoungCapital NEXT. All Rights Reserved.</p>
