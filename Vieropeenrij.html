@@ -35,14 +35,18 @@
           var teVerkleurenCirkel = document.getElementById(Iddoel);
           teVerkleurenCirkel.style.backgroundColor = 'red';
       }
+      var hoogte = 0;
       function checkOpWelkeHoogte(tiental){
-          var kleur = document.getElementById("vakje" + tiental + "0").style.backgroundColor;
+
+          var kleur = document.getElementById("vakje" + tiental + hoogte).style.backgroundColor;
+
           if(kleur == 'red'){
-              kleur = tiental + "1";
-              alert(kleur);
-              return  + "1";
+              hoogte++;
+              //alert(kleur);
+            //  return  + "1";
           }
-          return 0;
+        
+          return hoogte;
       }
 
 
