@@ -9,14 +9,11 @@
           border-collapse: collapse;
           background-color: blue;
       }
-
       #vieropeenrij td{
           border: 5px solid blue;
             width: 70px;
             height: 70px;
-
       }
-
       .circle{
           background: white;
           border-radius: 100%;
@@ -24,34 +21,49 @@
           width: 70px;
           position: relative;
       }
-
   </style>
-
   <script>
       function steenaanklikken(vakId){
           var rij = "" + vakId;
           rij = rij.charAt(0);
           var Iddoel = "vakje" + rij + checkOpWelkeHoogte(rij);
           var teVerkleurenCirkel = document.getElementById(Iddoel);
-          teVerkleurenCirkel.style.backgroundColor = 'red';
+          teVerkleurenCirkel.style.backgroundColor = wisselSpeler();
+          var aanDeBeurt = spelerAanZet();
       }
-      var hoogte = 0;
+      var hoogte = [0,0,0,0,0,0,0];
       function checkOpWelkeHoogte(tiental){
-
-          var kleur = document.getElementById("vakje" + tiental + hoogte).style.backgroundColor;
-
-          if(kleur == 'red'){
-              hoogte++;
-              //alert(kleur);
-            //  return  + "1";
+          var kleur = document.getElementById("vakje" + tiental + hoogte[tiental-1]).style.backgroundColor;
+          if(kleur == 'red'|| kleur == 'yellow'){
+              hoogte[tiental-1]++;
           }
-        
-          return hoogte;
+          return hoogte[tiental-1];
       }
-
-
-
-
+      var clicks = 0;
+        function telKlik(){
+            clicks ++;
+            return clicks;
+        }
+        function wisselSpeler(){
+            document.getElementById("aantalKlikken").innerHTML = telKlik();
+            if(clicks % 2 == 0) {
+                return "yellow";
+            }   
+            else{
+                return "red";
+            }
+        }
+        function spelerAanZet(){
+            document.getElementById("commentaar").style.backgroundColor = 'red';
+            document.getElementById("commentaar").innerHTML = "Speler 1"
+            if(clicks % 2 == 0){
+                document.getElementById("commentaar").style.backgroundColor = "yellow";
+                document.getElementById("commentaar").innerHTML = "Speler 2"
+            }
+        }
+        function RestartGame(){   //voorbeeld van refresh website
+				window.location = window.location;
+			}
   </script>
 </head>
 <body>
@@ -112,10 +124,12 @@
             <td><div class="circle" onclick = steenaanklikken(70) id=vakje70></div></td>
         </tr>
     </table>
-
-    <details>
+    <div id="hallo"><p>Clicks: <a id="aantalKlikken">0</a></p></div>
+    <div id="commentaar">Beurt</div>
+    <button type="reset" onclick="RestartGame()">Herstart het spel</button> <!--restart knop-->
+    <p><details>
         <summary>Copyright 2019.</summary>
         <p>This game is created by YoungCapital NEXT. All Rights Reserved.</p>
-    </details>
+    </details></p>
 </body>
 </html>
